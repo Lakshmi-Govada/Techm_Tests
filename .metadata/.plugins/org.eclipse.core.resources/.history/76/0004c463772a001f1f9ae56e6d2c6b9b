@@ -1,0 +1,36 @@
+package com.techm;
+
+
+
+package com.example.crud;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class MainApp {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        EmployeeManager manager = context.getBean(EmployeeManager.class);
+
+        // Adding employees
+        manager.addEmployee(new Employee(1, "John Doe", "Engineering"));
+        manager.addEmployee(new Employee(2, "Jane Smith", "Marketing"));
+
+        // Retrieving all employees
+        System.out.println("All Employees: " + manager.getAllEmployees());
+
+        // Retrieving employee by ID
+        System.out.println("Employee with ID 1: " + manager.getEmployeeById(1));
+
+        // Updating employee
+        Employee updatedEmployee = new Employee(1, "John Doe", "Research and Development");
+        manager.updateEmployee(updatedEmployee);
+        System.out.println("Updated Employee with ID 1: " + manager.getEmployeeById(1));
+
+        // Deleting employee
+        manager.deleteEmployee(2);
+        System.out.println("All Employees after deletion: " + manager.getAllEmployees());
+
+        context.close();
+    }
+}

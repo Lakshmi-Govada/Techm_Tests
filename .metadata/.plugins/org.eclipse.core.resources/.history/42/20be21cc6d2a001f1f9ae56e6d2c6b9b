@@ -1,0 +1,5 @@
+package com.techm.entity;
+
+public class Student {
+
+}
